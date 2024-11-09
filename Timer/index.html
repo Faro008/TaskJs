@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Таймер</title>
+    <style>
+        * { margin: 0; padding: 0; border: 0; box-sizing: border-box; }
+        body {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f1f1f1;
+            height: 100vh;
+        }
+        button:hover{
+            cursor: pointer;
+            background-color: #3f0303;
+            color: #eb0d0d;
+            
+        }
+    </style>
+</head>
+<body>
+    <h1 style="padding: 10px;">Timer</h1>
+    <input id="inputTime"  type="text" max="59" min="1" style="border: #eb0d0d 2px solid;">
+    <button type="button" style="border: 2px solid #968181; padding: 10px; background-color: #fff; border-radius: 25px; margin: 25px 0;" size="5" onclick="MyF()">Click Me</button>
+    <p id="intro"></p>
+    <input id="inFro" type="text" maxlength="2">
+    <script>
+        const intro = document.getElementById('intro');
+        const inFro = document.getElementById('inFro');
+        let time = inputTime.value;
+        inFro.value = '00';
+        MyF = () =>{
+            inFro.value = '00';
+            let x = 1;
+            let y = 0;
+            const inputTime = document.getElementById('inputTime').value;
+            let sec = parseInt(inputTime) +1;
+            console.log(sec);
+        setInterval(main, 1000);
+        function main(){
+        y =  x++;
+        if(sec <= y){
+        return y;}
+        else{
+        inFro.value  = y;}
+        }
+        function Pro(){
+        }
+} 
+    </script>
+</body>
+</html>
