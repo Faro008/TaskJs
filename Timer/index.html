@@ -20,37 +20,61 @@
             color: #eb0d0d;
             
         }
+        #inputTime{
+            width: 35px;
+            text-align: center;
+        }
+        #inFro{
+            color: #eb0d0d;
+            width: 55px;
+            height: auto;
+            font-size: 3em;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
     <h1 style="padding: 10px;">Timer</h1>
     <input id="inputTime"  type="text" max="59" min="1" style="border: #eb0d0d 2px solid;">
-    <button type="button" style="border: 2px solid #968181; padding: 10px; background-color: #fff; border-radius: 25px; margin: 25px 0;" size="5" onclick="MyF()">Click Me</button>
+    <button type="button" style="border: 2px solid #968181; padding: 10px; background-color: #fff; border-radius: 25px; margin: 25px 0;" size="5" onclick="MyF()">StartClick</button>
+    <button type="button" style="border: 2px solid #968181; padding: 10px; background-color: #fff; border-radius: 25px; margin: 25px 0;" size="5" onclick="stopFunction()">StopClick</button>
+    <button type="button" style="border: 2px solid #968181; padding: 10px; background-color: #fff; border-radius: 25px; margin: 25px 0;" size="5" onclick="returnSetInterval()">Return</button>
+
     <p id="intro"></p>
-    <input id="inFro" type="text" maxlength="2">
+    <input id="inFro" type="text" maxlength="2" value="00" >
     <script>
         const intro = document.getElementById('intro');
         const inFro = document.getElementById('inFro');
-        let time = inputTime.value;
-        inFro.value = '00';
-        MyF = () =>{
-            inFro.value = '00';
+        let stopSetInterval; //Объявление пременной для остановки функции отчета времени
+        let time = inputTime.value; //Задаем время таймера
+        let y = 0;
+        inFro.value = '00'; //Устанавливаем условный 0 таймера
+        MyF = () =>{ //Функция запускает основной таймер
+            clearInterval(stopSetInterval);
+            inFro.value = '00'; //Устанавливаем условный 0 таймера после повторного запуска таймера
             let x = 1;
-            let y = 0;
-            const inputTime = document.getElementById('inputTime').value;
-            let sec = parseInt(inputTime) +1;
+            y = 0;
+            const inputTime = document.getElementById('inputTime').value; //Получаем прошдшее время с экрана
+            let sec = parseInt(inputTime) +1;// Добавляем к заданному времени секунду
             console.log(sec);
-        setInterval(main, 1000);
-        function main(){
-        y =  x++;
-        if(sec <= y){
-        return y;}
-        else{
-        inFro.value  = y;}
+            stopSetInterval = setInterval(main, 1000); //функция с интервалом 1 сек
+            function main(){ //Функция таймера
+                y =  x++;
+                if(sec <= y){   //если таймер дошел до заданного параметра останавливаем функцию
+                    return;}
+                else{
+                    inFro.value  = y;}
+            };
+        } 
+        function stopFunction(){ // Пауза функции отсчета времени
+            clearInterval(stopSetInterval);
+        };
+        function returnSetInterval (){ //Обнуляет таймер
+            clearInterval(stopSetInterval);
+            y=0;
+            inFro.value = '00';
         }
-        function Pro(){
-        }
-} 
+
     </script>
 </body>
 </html>
